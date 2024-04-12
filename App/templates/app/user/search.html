@@ -1,0 +1,83 @@
+{% extends "app/index.html" %}
+{% load static %}
+{% block search %}
+<style>
+    .button {
+      background-color: #04AA6D; /* Green */
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+    .button1 {
+      padding: 16px 20px;
+      background-color: rgba(231, 207, 207, 0.938); 
+      color: white; 
+      border: 2px solid #41aa0400;
+    }
+    
+    .button1:hover {
+      padding: 16px 32px;
+      background-color: rgba(78, 35, 35, 0.466);
+      color: black;
+    }
+    .button2 {
+      padding: 16px 20px;
+      background-color: rgba(231, 207, 207, 0.938); 
+      color: white; 
+      border: 2px solid #41aa0400;
+    }
+    
+    .button2:hover {
+      padding: 16px 30px;
+      background-color: rgba(78, 35, 35, 0.466);
+      color: black;
+    }
+    .movie-frame {
+        position: relative;
+        display: inline-block;
+        margin: 20px;
+       }
+       
+       .movie-frame img {
+        width: 300px;
+        height: 450px;
+       }
+       
+       .movie-info {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.712);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 10px;
+       }
+       
+       .movie-frame:hover .movie-info {
+        opacity: 100;
+       }
+</style>
+<h5> Results search for <a href="{% url "detail" %}?id={{movie.id}}" style="color: black;"> {{searched}} </a></h5>
+<div id="home" class="tab-pane fade in active clearfix ">
+    {% for movie in movies %}
+    <div class="movie-frame" style="flex: 1 0 calc(33.33% - 20px); margin: 10px;" >
+     <a href="{% url "detail" %}?id={{movie.id}}">
+      <img src="{{movie.poster.url}}" alt="Movie Image" width="300" height="400"  />
+     </a>
+    </div>
+    {% endfor %}
+   </div>
+{% endblock search %}
